@@ -95,3 +95,5 @@ h2 a,h2 button{font-size:15px;font-weight:400;color:var(--green);min-height:44px
 .tabs button .ti{font-size:22px;line-height:1}.tabs button.on{color:var(--green)}
 .toast{position:fixed;left:50%;bottom:110px;transform:translateX(-50%);background:var(--c2);padding:10px 16px;border-radius:12px;font-size:14px;z-index:40}
 @media (prefers-reduced-motion:reduce){.odo .col,.bar i,.disc,.toggle::after{transition:none!important}.skel{animation:none}}
+
+.paste{padding:64px 20px;display:flex;flex-direction:column;gap:14px}.paste input{background:#1c1c1e;border:1px solid #333;border-radius:14px;color:#fff;padding:14px;font-size:16px}.paste .btn{background:#22c55e;color:#000;border:0;border-radius:999px;padding:14px;font-weight:600;font-size:16px}

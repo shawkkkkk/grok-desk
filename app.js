@@ -200,5 +200,12 @@ after.account=()=>{const b=$('#invite');if(b)b.onclick=async()=>{const u=D.accou
 
 if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
 window.__deskReady=()=>D.state!=null||failAt!=null;
+if(!DP){window.__deskReady=()=>true;$('#view').innerHTML=`<div class="paste"><h2>Paste your desk link</h2><p class="dim">Home-screen apps keep their own storage. Paste the desk link from Telegram (full link or just the path).</p><input id="pl" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="https://…/#d=…"><button id="ps" class="btn">Save</button><div id="pm" class="dim"></div></div>`;
+  const nav=document.querySelector('nav');if(nav)nav.hidden=true;
+  $('#ps').onclick=async()=>{const v=$('#pl').value.trim();const m=v.match(/(?:[#&]d=|\/d\/)?([A-Za-z0-9_\-]{32,})\/?(?:[^A-Za-z0-9_\-].*)?$/);const pm=$('#pm');
+    if(!m){pm.textContent='That does not look like a desk link.';return}pm.textContent='Checking…';
+    try{const r=await fetch(`d/${m[1]}/state.json?t=${Date.now()}`,{cache:'no-store'});if(!r.ok)throw 0;await r.json();localStorage.setItem('desk_d',m[1]);location.reload()}
+    catch(e){pm.textContent='Could not reach that desk. Check the link and try again.'}};
+  return}
 render();poll();setInterval(poll,POLL*1000);
 })();
